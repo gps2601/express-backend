@@ -6,15 +6,16 @@ const cors = require('cors')
 const notesRouter = require('./controllers/notes')
 const middleware = require('./utils/middleware')
 const mongoose = require('mongoose')
+const logger = require('./utils/logger')
 
-console.log('connecting to  ', config.MONGODB_URI)
+logger.info('connecting to  ', config.MONGODB_URI)
 
 mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true })
   .then(() => {
-    console.log('connected to mongoDb')
+    logger.info('connected to mongoDb')
   })
   .catch((error) => {
-    console.log('error connecting to mongoDb: ', error.message)
+    logger.info('error connecting to mongoDb: ', error.message)
   })
 
 app.use(cors())
